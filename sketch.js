@@ -28,7 +28,7 @@ function draw() {
     return;
   }
 
-  // Crée de nouveaux cœurs
+  
   if (random() < 0.03) {
     hearts.push({ x: random(20, width - 20), y: 0 });
   }
@@ -40,14 +40,14 @@ function draw() {
     h.y += 3;
   }
 
-  // Enlève ceux qui sortent de l’écran
+  
   hearts = hearts.filter(h => h.y < height + 20);
 
   fill(255, 0, 100);
   textSize(22);
   text("Score : " + score, width / 2, 40);
 
-  // Vérifie la victoire
+  
   if (score >= target) gameOver = true;
 }
 
@@ -61,7 +61,7 @@ function mousePressed() {
   }
 }
 
-// Dessin du cœur
+
 function heart(x, y, s) {
   beginShape();
   for (let t = 0; t < TWO_PI; t += 0.1) {
