@@ -4,9 +4,9 @@ let target = 10;
 let gameOver = false;
 
 function setup() {
-  createCanvas(400, 600);
+  createCanvas(windowWidth, windowHeight); // plein écran
   textAlign(CENTER, CENTER);
-  textSize(24);
+  textSize(width / 20);
 }
 
 function draw() {
@@ -14,21 +14,21 @@ function draw() {
 
   if (gameOver) {
     fill(255, 50, 100);
-    textSize(36);
-    text("💖 Tu as gagné mon cœur ! 💖", width / 2, height / 2 - 40);
+    textSize(width / 10);
+    text("💖 Tu as gagné mon cœur ! 💖", width / 2, height / 2 - height / 10);
     
     fill(255, 80, 120);
-    textSize(40); // 🌸 ici on ajuste la taille du message
-    text("Je t’aime Step Friend 💘", width / 2, height / 2 + 20);
+    textSize(width / 9);
+    text("Je t’aime Step Friend 💘", width / 2, height / 2 + 10);
     
     fill(255, 0, 100);
-    textSize(18);
-    text("Score final : " + score, width / 2, height / 2 + 70);
+    textSize(width / 20);
+    text("Score final : " + score, width / 2, height / 2 + height / 10);
     noLoop();
     return;
   }
 
-  
+  // Crée des cœurs aléatoires
   if (random() < 0.03) {
     hearts.push({ x: random(20, width - 20), y: 0 });
   }
@@ -36,31 +36,30 @@ function draw() {
   // Dessine et déplace les cœurs
   fill(255, 100, 150);
   for (let h of hearts) {
-    heart(h.x, h.y, 20);
-    h.y += 3;
+    heart(h.x, h.y, width / 20);
+    h.y += height / 200;
   }
 
-  
+  // Supprime les cœurs sortis de l’écran
   hearts = hearts.filter(h => h.y < height + 20);
 
+  // Score
   fill(255, 0, 100);
-  textSize(22);
-  text("Score : " + score, width / 2, 40);
+  textSize(width / 25);
+  text("Score : " + score, width / 2, height / 15);
 
-  
   if (score >= target) gameOver = true;
 }
 
 function mousePressed() {
   for (let i = hearts.length - 1; i >= 0; i--) {
     let h = hearts[i];
-    if (dist(mouseX, mouseY, h.x, h.y) < 20) {
+    if (dist(mouseX, mouseY, h.x, h.y) < width / 20) {
       hearts.splice(i, 1);
       score++;
     }
   }
 }
-
 
 function heart(x, y, s) {
   beginShape();
@@ -70,4 +69,8 @@ function heart(x, y, s) {
     vertex(xh, yh);
   }
   endShape(CLOSE);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
