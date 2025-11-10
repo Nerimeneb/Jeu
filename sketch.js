@@ -10,10 +10,20 @@ function setup() {
 }
 
 function draw() {
-  clear(); // fond transparent
+  background(255, 200, 220); // fond rose
 
   if (gameOver) {
-    // 💬 messages (même grandeur et rapprochés)
+    // 🌸 Cœurs décoratifs dans le fond
+    noStroke();
+    for (let i = 0; i < 50; i++) {
+      let x = random(width);
+      let y = random(height);
+      let size = random(width / 50, width / 15);
+      fill(255, 100 + random(50), 150 + random(50), 50 + random(50)); // semi-transparents
+      heart(x, y, size);
+    }
+
+    // 💬 Messages de fin
     fill(255, 50, 100);
     textSize(width / 16);
     text("Tu as gagné mon cœur 🙃🫠", width / 2, height / 2 - height / 20);
@@ -31,10 +41,10 @@ function draw() {
     hearts.push({ x: random(20, width - 20), y: 0 });
   }
 
-  // Cœurs vitrés (semi-transparents)
+  // Cœurs "vitrés" tombants
   for (let h of hearts) {
     fill(255, 100, 150, 120); // semi-transparent
-    stroke(255, 150); // bord brillant
+    stroke(255, 150);
     strokeWeight(2);
     heart(h.x, h.y, width / 20);
     h.y += height / 200;
@@ -42,7 +52,7 @@ function draw() {
 
   hearts = hearts.filter(h => h.y < height + 20);
 
-  // Score en haut (optionnel)
+  // Score en haut
   fill(255, 0, 100);
   textSize(width / 25);
   text("Score : " + score, width / 2, height / 15);
