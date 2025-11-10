@@ -23,11 +23,11 @@ function draw() {
     // 💬 messages
     fill(255, 50, 100);
     textSize(width / 12);
-    text("💖 Tu as gagné mon cœur ! 💖", width / 2, height / 2 - height / 5);
+    text(" Tu as gagné mon cœur 🙃🫠 ", width / 2, height / 2 - height / 5);
     
     fill(255, 80, 120);
     textSize(width / 16); // 🔹 plus petit que le message du dessus
-    text("Je t’aime Step Friend 💘🫶🙃🫠💗", width / 2, height / 2 + height / 20);
+    text("Je t’aime Step Friend 🫶💗", width / 2, height / 2 + height / 20);
     
     fill(255, 0, 100);
     textSize(width / 22);
