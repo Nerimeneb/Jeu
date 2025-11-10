@@ -13,30 +13,24 @@ function draw() {
   background(255, 200, 220);
 
   if (gameOver) {
-    // 💗 grand cœur rose avec ombre douce
-    noStroke();
-    for (let i = 40; i > 0; i--) {
-      fill(255, 100 + i * 3, 150 + i * 2, 60);
-      heart(width / 2, height / 2 - height / 10, width / 5 + i * 2);
-    }
-
-    // 💬 messages
+    // 💬 messages (même grandeur et rapprochés)
     fill(255, 50, 100);
-    textSize(width / 12);
-    text(" Tu as gagné mon cœur 🙃🫠 ", width / 2, height / 2 - height / 5);
+    textSize(width / 16);
+    text("Tu as gagné mon cœur 🙃🫠", width / 2, height / 2 - height / 20);
     
-    fill(255, 80, 120);
-    textSize(width / 16); // 🔹 plus petit que le message du dessus
-    text("Je t’aime Step Friend 🫶💗", width / 2, height / 2 + height / 20);
-    
+    fill(255, 50, 100);
+    textSize(width / 16);
+    text("Je t’aime Step Friend 🫶💗", width / 2, height / 2 + height / 15);
+
+    // Score final
     fill(255, 0, 100);
     textSize(width / 22);
-    text("Score final : " + score, width / 2, height / 2 + height / 6);
+    text("Score final : " + score, width / 2, height / 2 + height / 4);
     noLoop();
     return;
   }
 
-  // cœurs qui tombent
+  // Cœurs qui tombent
   if (random() < 0.03) {
     hearts.push({ x: random(20, width - 20), y: 0 });
   }
