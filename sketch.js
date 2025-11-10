@@ -10,7 +10,7 @@ function setup() {
 }
 
 function draw() {
-  background(255, 200, 220);
+  clear(); // fond transparent
 
   if (gameOver) {
     // 💬 messages (même grandeur et rapprochés)
@@ -22,10 +22,6 @@ function draw() {
     textSize(width / 16);
     text("Je t’aime Step Friend 🫶💗", width / 2, height / 2 + height / 15);
 
-    // Score final
-    fill(255, 0, 100);
-    textSize(width / 22);
-    text("Score final : " + score, width / 2, height / 2 + height / 4);
     noLoop();
     return;
   }
@@ -35,14 +31,18 @@ function draw() {
     hearts.push({ x: random(20, width - 20), y: 0 });
   }
 
-  fill(255, 100, 150);
+  // Cœurs vitrés (semi-transparents)
   for (let h of hearts) {
+    fill(255, 100, 150, 120); // semi-transparent
+    stroke(255, 150); // bord brillant
+    strokeWeight(2);
     heart(h.x, h.y, width / 20);
     h.y += height / 200;
   }
 
   hearts = hearts.filter(h => h.y < height + 20);
 
+  // Score en haut (optionnel)
   fill(255, 0, 100);
   textSize(width / 25);
   text("Score : " + score, width / 2, height / 15);
